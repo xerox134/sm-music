@@ -5,14 +5,14 @@
 
  <!--                 ERROR HANDLER                     -->
 <!--                  ---------------                    -->
-       <div v-if="artistInfo.error=='utils.fv(...).forEach is not a function'">
+       <div v-if="artistInfo.error=='utils.fv(...).forEach is not a function' && type=='artist'">
       <h1>THIS ARTIST IS NOT AVAILABLE </h1>
       <button @click="home()"><h2>Back to homepage</h2></button>
    </div>
 
  <!--                   ARTIST CODE                     -->
 <!--                  ---------------                    -->
-    <div id="ArtistList" v-else-if="artistInfo.error != 'Cannot read property \'hasOwnProperty\' of undefined'&&type!='song' ">
+    <div id="ArtistList" v-else-if="artistInfo.error != 'Cannot read property \'hasOwnProperty\' of undefined'&& type=='artist' ">
       <h1>Artist:</h1>
       <h1>{{ artistInfo.name }}</h1>
 
@@ -37,7 +37,7 @@
 <!--                  ---------------                    -->
 
    
-    <div v-else-if="type!='song'">
+    <div v-else-if="type=='artist'">
       <h1>THIS ARTIST IS NOT AVAILABLE </h1>
       <button @click="home()"><h2>Back to homepage</h2></button>
     </div>
@@ -75,7 +75,7 @@
     </div> 
     </div> 
 
-    <div v-else>
+    <div v-else-if="type=='song'" >
   <h1>THIS SONG IS NOT AVAILABLE AT THE MOMENT </h1>
       <button @click="home()"><h2>Back to homepage</h2></button>
 
