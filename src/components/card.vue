@@ -37,7 +37,7 @@
        <span> type: {{ card.type }}</span><br />
            <span> Name: {{ card.name }}</span ><br />
            <span> BrowseId: {{ card.browseId }}</span ><br />
-             <button @click="shareAlbum(card.browseId)">Dela album</button><br/><br/>
+             <button @click="shareAlbum(card.name,card.artist,card.browseId,card.playlistId,card.thumbnails[0].url,card.year)">Dela album</button><br/><br/>
      
   
     </div> 
@@ -84,15 +84,38 @@ console.log("detta är loggen " , vad)
   shareArtist(id){
      
       this.$router.push({
-        path: "/share/artist/"+id+"/artist",
+        path: "/share/"+id+"/artist",
       });
 
 
     },
 
+     shareAlbum(albumName,artistName,browseId,playlistId,thumbnail,year){
+ this.$store.commit("setAlbumName", albumName);
+ this.$store.commit("setArtistName", artistName);
+ this.$store.commit("setPlaylistId", playlistId);
+ this.$store.commit("setYear", year);
+ this.$store.commit("setThumbnail", thumbnail);
+
+ console.log(  albumName)
+ console.log(  "vade är detta?" ,browseId)
+ console.log(  artistName)
+ console.log(  playlistId)
+ console.log(year)
+ console.log( thumbnail)
+
+       this.$router.push({
+        path: "/share/"+browseId+"/album",
+      });
+    },
+
+//        path: "/share/album/"+albumName+"/"+artistName+"/"+browseId+"/"+playlistId+"/"+year+"/album",
+
+
+
     shareSong(songName,artistName,videoId){
        this.$router.push({
-        path: "/share/song/"+songName+"/"+artistName+"/"+videoId+"/song",
+        path: "/share/"+songName+"/"+artistName+"/"+videoId+"/song",
       });
     }
   },

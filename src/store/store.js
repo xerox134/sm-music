@@ -18,6 +18,12 @@ export default new Vuex.Store({
     shareSong:"",
     shareArtist:"UCQftgCD31uFz9QhFYIQ-D6A",
     shareAlbum:"",
+
+    AlbumName:"",
+    ArtistName:"",
+    PlaylistId:"",
+    Year:"",
+    Thumbnail:""
     
    
   },
@@ -44,16 +50,25 @@ export default new Vuex.Store({
     setSong(state,payload){
       state.shareSong=payload
     },  
-    setArtistInfo(state,payload){
-      state.artistInfo=payload
-    },
+    
    
-    // setCartPrice(state, payload) {
-    //   state.cartItems.price = payload
-    // },
-    // setFinalPrice(state, payload) {
-    //   state.finalPrice = payload
-    // },
+
+
+    setAlbumName(state,payload){
+      state.AlbumName=payload
+    },
+    setArtistName(state,payload){
+      state.ArtistName=payload
+    },
+    setPlaylistId(state,payload){
+      state.PlaylistId=payload
+    },
+    setYear(state,payload){
+      state.Year=payload
+    },
+    setThumbnail(state,payload){
+      state.Thumbnail=payload
+    },
   },
 
   //_________________________________________________________________________________________________________________________________________________________________________________
@@ -110,6 +125,24 @@ export default new Vuex.Store({
   
      getAlbum(state){
       return state.shareAlbum
+    },
+
+
+
+    getAlbumName(state){
+      return state.AlbumName
+    },
+    getArtistName(state){
+     return state.ArtistName
+    },
+    getPlaylistId(state){
+      return state.PlaylistId
+    },
+    getYear(state){
+      return state.Year
+    },
+    getThumbnail(state){
+      return state.Thumbnail
     },
   
     

@@ -3,11 +3,15 @@
 
     <div id="Artist">
 
+ <!--                 ERROR HANDLER                     -->
+<!--                  ---------------                    -->
        <div v-if="artistInfo.error=='utils.fv(...).forEach is not a function'">
       <h1>THIS ARTIST IS NOT AVAILABLE </h1>
       <button @click="home()"><h2>Back to homepage</h2></button>
    </div>
 
+ <!--                   ARTIST CODE                     -->
+<!--                  ---------------                    -->
     <div id="ArtistList" v-else-if="artistInfo.error != 'Cannot read property \'hasOwnProperty\' of undefined'&&type!='song' ">
       <h1>Artist:</h1>
       <h1>{{ artistInfo.name }}</h1>
@@ -29,7 +33,9 @@
       <h1>_____________________________________</h1>
     </div> 
 
-  
+  <!--                 ERROR HANDLER                     -->
+<!--                  ---------------                    -->
+
    
     <div v-else-if="type!='song'">
       <h1>THIS ARTIST IS NOT AVAILABLE </h1>
@@ -37,19 +43,20 @@
     </div>
 
     </div>
- <!-- <div id="Album">
+ 
+ 
+ 
+  <div id="Album" v-if="type=='album' "> 
   <div id="AlbumList"> 
-      <ol>
-        <h1>Album:</h1>
-        <li v-for="(find, index) in geAlbum" :key="index"> 
-         
-          <Card :card="find" />
-        </li>
-      </ol>
+     <h1>Album:</h1>
+    
     </div>
-    </div>-->
+    </div>
 
-<div id="Song" v-if="type!='artist'">
+
+
+
+<div id="Song" v-if="type=='song' && songInfo.id == id">
    <div id="SongList">
       <ol>
         <h1>Song:</h1>
@@ -67,6 +74,12 @@
       </ol>
     </div> 
     </div> 
+
+    <div v-else>
+  <h1>THIS SONG IS NOT AVAILABLE AT THE MOMENT </h1>
+      <button @click="home()"><h2>Back to homepage</h2></button>
+
+    </div>
 
     
 

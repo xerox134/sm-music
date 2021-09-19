@@ -14,13 +14,18 @@ const routes = [
   }, 
   
   {
-    path: "/share/artist/:id/:type",
+    path: "/share/:id/:type",
     name: "shareArtist",
     component: Share,
   }, 
   {
-    path: "/share/song/:songName/:artistName/:videoId/:type",
+    path: "/share/:songName/:artistName/:videoId/:type",
     name: "shareSong",
+    component: Share,
+  },  
+  {
+    path: "/share/:browseId/:type",
+    name: "shareAlbum",
     component: Share,
   },
 
