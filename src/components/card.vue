@@ -1,7 +1,27 @@
 <template>
   <div id="card">
    
+     
+    <div class="Artist" v-if="card.type == 'artist'">
+       <span> type: {{ card.type }}</span ><br />
+        <span> Artist name: {{ card.name }}</span  ><br />
+            <span> Browse ID: {{ card.browseId }}</span  ><br />
+                 <button ><router-link :to="artistLink">Dela Artist</router-link></button><br/><br/>
 
+                <!-- <button @click="shareArtist(card.browseId)">Dela artist </button><br/><br/> -->
+              </div>
+      
+
+         <div class="Album" v-if="card.type == 'album'">
+       <span> type: {{ card.type }}</span><br />
+           <span> Name: {{ card.name }}</span ><br />
+           <span> BrowseId: {{ card.browseId }}</span ><br />
+                             <button ><router-link :to="albumLink">Dela Album</router-link></button><br/><br/>
+
+             <!-- <button @click="shareAlbum(card.name,card.artist,card.browseId,card.playlistId,card.thumbnails[0].url,card.year)">Dela album</button><br/><br/> -->
+     
+  
+    </div> 
  
     <div class="Song" v-if="card.type == 'song'">
       <span> Type: {{ card.type }}</span ><br />
@@ -10,46 +30,19 @@
            <span> Album name: {{ card.album.name }}</span> <br />
              <span> MusicID: {{ card.videoId }}</span ><br />
                 <button @click="Play(card.videoId)">Spela</button><br/>
-                  <button @click="shareSong(card.name, card.artist.name,card.videoId)">Dela låt</button><br/><br/>
-
-
+                  <!-- <button @click="shareSong(card.name, card.artist.name,card.videoId)">Dela låt</button><br/><br/> -->
+                  <button ><router-link :to="songLink">Dela låt</router-link></button><br/><br/>
                 
                 </div>
     
     
      
-     
-    <div class="Artist" v-if="card.type == 'artist'">
-       <span> type: {{ card.type }}</span ><br />
-        <span> Artist name: {{ card.name }}</span  ><br />
-            <span> Browse ID: {{ card.browseId }}</span  ><br />
-                <button @click="shareArtist(card.browseId)">Dela artist </button><br/><br/>
-              </div>
-      
-     
-      
-     
-  
- 
 
-
-    <div class="Album" v-if="card.type == 'album'">
-       <span> type: {{ card.type }}</span><br />
-           <span> Name: {{ card.name }}</span ><br />
-           <span> BrowseId: {{ card.browseId }}</span ><br />
-             <button @click="shareAlbum(card.name,card.artist,card.browseId,card.playlistId,card.thumbnails[0].url,card.year)">Dela album</button><br/><br/>
-     
-  
-    </div> 
-    
     <div class="sharedArtist" v-if="type == 'sharedArtist'">
     
            <span> {{ card.name }}</span ><br />
          
 
-          
-     
-  
     </div> 
 
 
@@ -67,12 +60,28 @@ export default {
   props: ["card", "type"],
 
   computed: {
+        artistLink(){
+
+                 let thumbnailUrl = encodeURIComponent(this.card.thumbnails[1].url)
+      return "/share/"+this.card.browseId+"/"+thumbnailUrl+"/artist"
   },
 
+   albumLink(){
+       let thumbnailUrl = encodeURIComponent(this.card.thumbnails[1].url)
+      return "/share/"+this.card.browseId+"/"+this.card.name+"/"+this.card.artist+"/"+this.card.playlistId+"/"+this.card.year+"/"+thumbnailUrl+"/album"
+    },
+
+    songLink(){
+             let thumbnailUrl = encodeURIComponent(this.card.thumbnails[1].url)
+      return "/share/"+this.card.name+"/"+this.card.artist.name+"/"+this.card.videoId+"/"+thumbnailUrl+"/song"
+    },  
+    
+   
+  },
+  
+
   methods: {
-dett(vad){
-console.log("detta är loggen " , vad)
-},
+
 
   Play(id){
       // calling global variable
@@ -81,6 +90,8 @@ console.log("detta är loggen " , vad)
      
     },
 
+
+/* Share Artist!! Old method 
   shareArtist(id){
      
       this.$router.push({
@@ -88,38 +99,47 @@ console.log("detta är loggen " , vad)
       });
 
 
-    },
+    },*/
 
-     shareAlbum(albumName,artistName,browseId,playlistId,thumbnail,year){
+
+/* SHARE ALBUM!!! OLD METHOD
+    shareAlbum(albumName,artistName,browseId,playlistId,thumbnail,year){
+
 //  this.$store.commit("setAlbumName", albumName);
 //  this.$store.commit("setArtistName", artistName);
 //  this.$store.commit("setPlaylistId", playlistId);
 //  this.$store.commit("setYear", year);
-//  this.$store.commit("setThumbnail", thumbnail);
+ 
+ this.$store.commit("setThumbnail", thumbnail);
+ let thumbnailUrl = encodeURIComponent(thumbnail)
 
 //  console.log(  albumName)
 //  console.log(  "vade är detta?" ,browseId)
 //  console.log(  artistName)
-//  console.log(  playlistId)
+  // console.log(  playlistId)
 //  console.log(year)
 //  console.log( thumbnail)
 
        this.$router.push({
-     path: "/share/album/"+browseId+"/"+thumbnail+"/"+albumName+"/"+artistName+"/"+playlistId+"/"+year+"/album",
+     path: "/share/"+browseId+"/"+albumName+"/"+artistName+"/"+playlistId+"/"+year+"/"+thumbnailUrl+"/album",
       });
-    },
-
-//        path: "/share/album/"+browseId+"/"+thumbnail+"/"+albumName+"/"+artistName+"/"+playlistId+"/"+year+"/album",
 
 
+    }, */
 
+
+
+/* SHARE SONG! OLD METHOD
     shareSong(songName,artistName,videoId){
        this.$router.push({
         path: "/share/"+songName+"/"+artistName+"/"+videoId+"/song",
       });
-    }
-  },
-};
+    }*/
+
+
+  }, 
+}; 
+
 </script>
 
 <style scoped>

@@ -54,10 +54,9 @@
 
     <div id="SearchList">
     <ol  >
-     
-
+  
       <h1>Resultat:</h1>
-      <li v-for="(find, index) in getEverything" :key="index">
+      <li v-for="(find, index) in getEverything" :key="index" :v-if="find.type='artist'">
         <Card :card="find"  />
       </li>
     </ol>

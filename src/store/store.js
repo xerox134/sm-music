@@ -106,14 +106,7 @@ export default new Vuex.Store({
     },
   },
 
-  // async fetchUser() {
-  //   await axios.get("http://localhost:3000/auth/whoami/")
-  //     .then(response => {
-  //       this.commit("setUser", response.data)
-  //       if (response != null)
-  //         console.log(response.data)
-  //     })
-  // },
+ 
 
 
   //_________________________________________________________________________________________________________________________________________________________________________________
