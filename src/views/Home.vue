@@ -1,6 +1,5 @@
 <template>
   <div id="Home">
-    <h1>HOME</h1>
 
     <div id="Search"><Search /></div>
   </div>

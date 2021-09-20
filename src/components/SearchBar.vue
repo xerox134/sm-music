@@ -14,12 +14,12 @@
   <a href="#">Om oss</a>
 
 
-  
+ 
   
   
 </div>
 
-
+ <div id="cssMain">
 
 
 
@@ -53,11 +53,33 @@
 
 
     <div id="SearchList">
-    <ol  >
+
+
+
+
+  <ol>
+      <h1>Låtar:</h1>
+      <li v-for="(find, index) in getEverything" :key="index">
+        <Card :card="find" :type="'song'" />
+      </li>
+    </ol> 
+
+
+    <ol>
   
-      <h1>Resultat:</h1>
-      <li v-for="(find, index) in getEverything" :key="index" :v-if="find.type='artist'">
-        <Card :card="find"  />
+      <h1>Artister:</h1>
+      <li v-for="(find, index) in getEverything" :key="index">
+        <Card :card="find" :type="'artist'" />
+      </li>
+    </ol>
+    
+    
+   
+    
+    <ol>
+      <h1>Album:</h1>
+      <li v-for="(find, index) in getEverything" :key="index">
+        <Card :card="find" :type="'album'"  />
       </li>
     </ol>
   </div>
@@ -65,7 +87,7 @@
 
 
 
-   
+   </div>
 
  
   </div>
@@ -114,12 +136,19 @@ export default {
 </script>
 
 <style scoped>
+#cssMain{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
 #Search{
-  text-align: center
 }
 #SearchList{
-  text-align: center;
-  align-items: center;
+ display: flex;
+ justify-content: center;
+ 
+ 
 }
 
 ol>li{
@@ -127,9 +156,10 @@ list-style-type: none;
 }
 
 
+
 .sidenav {
   height: 100%;
-  width: 200px;
+  width: 10vw;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -206,10 +236,36 @@ input{
 
 
 /* On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 1300px) {
+   .sidenav{
+    padding-top: 15px;
+    width: 13vw;
+  
+  }
+}@media screen and (max-width: 1050px) {
+   .sidenav{
+   display: none;
+  
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #SearchList{
+ display: flex;
+ justify-content: center;
+ flex-direction: column;
+ 
+ 
+}
+}
+
+
 @media screen and (max-width: 992px) {
   #everything {
     background-color: blue;
   }
+
+ 
 }
 
 /* On screens that are 600px or less, set the background color to olive */
@@ -217,7 +273,12 @@ input{
 }
 
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
+
+  .sidenav{
+    padding-top: 15px;
+    width: 20vw;
+  
+  }
   .sidenav a {font-size: 18px;}
 }
 

@@ -2,8 +2,10 @@
   <div id="card">
    
      
-    <div class="Artist" v-if="card.type == 'artist'">
+    <div class="Artist" v-if="card.type == 'artist' && type == 'artist'">
        <span> type: {{ card.type }}</span ><br />
+              <img v-bind:src= card.thumbnails[1].url>  <br />
+
         <span> Artist name: {{ card.name }}</span  ><br />
             <span> Browse ID: {{ card.browseId }}</span  ><br />
                  <button ><router-link :to="artistLink">Dela Artist</router-link></button><br/><br/>
@@ -12,9 +14,11 @@
               </div>
       
 
-         <div class="Album" v-if="card.type == 'album'">
+         <div class="Album" v-if="card.type == 'album' && type == 'album'">
        <span> type: {{ card.type }}</span><br />
            <span> Name: {{ card.name }}</span ><br />
+                 <img v-bind:src= card.thumbnails[1].url>  <br />
+
            <span> BrowseId: {{ card.browseId }}</span ><br />
                              <button ><router-link :to="albumLink">Dela Album</router-link></button><br/><br/>
 
@@ -23,8 +27,10 @@
   
     </div> 
  
-    <div class="Song" v-if="card.type == 'song'">
+    <div class="Song" v-if="card.type == 'song'  && type == 'song'">
       <span> Type: {{ card.type }}</span ><br />
+                       <img v-bind:src= card.thumbnails[1].url>  <br />
+
        <span> Name: {{ card.name }}</span ><br />
          <span> Artist name: {{ card.artist.name }}</span ><br />
            <span> Album name: {{ card.album.name }}</span> <br />
