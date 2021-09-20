@@ -24,7 +24,7 @@ const routes = [
     component: Share,
   },  
   {
-    path: "/share/:browseId/:type",
+    path: "/share/:browseId/:thumbnail/albumName/:artistName/:playlistId/:year/:type",
     name: "shareAlbum",
     component: Share,
   },

@@ -56,18 +56,27 @@ export default new Vuex.Store({
 
     setAlbumName(state,payload){
       state.AlbumName=payload
+      console.log("vad fpr vi bram", state.AlbumName)
     },
     setArtistName(state,payload){
       state.ArtistName=payload
+      console.log("vad fpr vi bram", state.ArtistName)
+
     },
     setPlaylistId(state,payload){
       state.PlaylistId=payload
+      console.log("vad fpr vi bram", state.PlaylistId)
+
     },
     setYear(state,payload){
       state.Year=payload
+      console.log("vad fpr vi bram", state.Year)
+
     },
     setThumbnail(state,payload){
       state.Thumbnail=payload
+      console.log("vad fpr vi bram", state.Thumbnail)
+
     },
   },
 
@@ -116,10 +125,13 @@ export default new Vuex.Store({
       return state.allInfo
     },
     getMusicId(state){
+
       return state.musicId;
     },
 
     getSong(state){
+            console.log("vad får jag ut2",state.shareSong )
+
       return state.shareSong
     } ,
   
@@ -130,18 +142,27 @@ export default new Vuex.Store({
 
 
     getAlbumName(state){
+
       return state.AlbumName
     },
     getArtistName(state){
+      console.log("vad får jag ut2",state.ArtistName )
+
      return state.ArtistName
     },
     getPlaylistId(state){
+      console.log("vad får jag ut2",state.PlaylistId )
+
       return state.PlaylistId
     },
     getYear(state){
+      console.log("vad får jag ut2",state.Year )
+
       return state.Year
     },
     getThumbnail(state){
+      console.log("vad får jag ut2",state.Thumbnail )
+
       return state.Thumbnail
     },
   

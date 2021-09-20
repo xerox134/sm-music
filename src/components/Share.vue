@@ -46,9 +46,20 @@
  
  
  
-  <div id="Album" v-if="type=='album' "> 
+  <div id="Album "> 
   <div id="AlbumList"> 
      <h1>Album:</h1>
+
+     <h1>Artist</h1>
+     
+   <button>Play Album:</button>
+   
+   <h1>Year</h1>
+  
+   
+  
+     
+     
     
     </div>
     </div>
@@ -105,6 +116,14 @@ export default {
      artistInfo:{},
      albumInfo:{},
      songInfo:{},
+     browseId:this.$route.params.browseId,
+     thumbnail:this.$route.params.thumbnail,
+     albumName:this.$route.params.albumName,
+     playlistId:this.$route.params.playlistId,
+     year:this.$route.params.year,
+
+     //        path: "/share/album/"+browseId+"/"+thumbnail+"/"+albumName+"/"+artistName+"/"+playlistId+"/"+year+"/album",
+
      
    }
  },
@@ -113,6 +132,27 @@ export default {
     Card,
   },
 
+
+computed:{
+
+
+       getAlbumName(){
+         console.log("vad får jag ut",this.$store.getters.getAlbumName )
+      return this.$store.getters.getAlbumName
+    },
+    getArtistName(){
+     return this.$store.getters.getArtistName
+    },
+    getPlaylistId(){
+      return this.$store.getters.getPlaylistId
+    },
+    getYear(){
+      return this.$store.getters.getYear
+    },
+    getThumbnail(){
+      return this.$store.getters.getThumbnail
+    },
+},
   methods:{
    
 Play(id){

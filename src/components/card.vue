@@ -91,25 +91,25 @@ console.log("detta är loggen " , vad)
     },
 
      shareAlbum(albumName,artistName,browseId,playlistId,thumbnail,year){
- this.$store.commit("setAlbumName", albumName);
- this.$store.commit("setArtistName", artistName);
- this.$store.commit("setPlaylistId", playlistId);
- this.$store.commit("setYear", year);
- this.$store.commit("setThumbnail", thumbnail);
+//  this.$store.commit("setAlbumName", albumName);
+//  this.$store.commit("setArtistName", artistName);
+//  this.$store.commit("setPlaylistId", playlistId);
+//  this.$store.commit("setYear", year);
+//  this.$store.commit("setThumbnail", thumbnail);
 
- console.log(  albumName)
- console.log(  "vade är detta?" ,browseId)
- console.log(  artistName)
- console.log(  playlistId)
- console.log(year)
- console.log( thumbnail)
+//  console.log(  albumName)
+//  console.log(  "vade är detta?" ,browseId)
+//  console.log(  artistName)
+//  console.log(  playlistId)
+//  console.log(year)
+//  console.log( thumbnail)
 
        this.$router.push({
-        path: "/share/"+browseId+"/album",
+     path: "/share/album/"+browseId+"/"+thumbnail+"/"+albumName+"/"+artistName+"/"+playlistId+"/"+year+"/album",
       });
     },
 
-//        path: "/share/album/"+albumName+"/"+artistName+"/"+browseId+"/"+playlistId+"/"+year+"/album",
+//        path: "/share/album/"+browseId+"/"+thumbnail+"/"+albumName+"/"+artistName+"/"+playlistId+"/"+year+"/album",
 
 
 
