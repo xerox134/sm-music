@@ -16,8 +16,9 @@
 
          <div class="Album" v-if="card.type == 'album' && type == 'album'">
        <span> type: {{ card.type }}</span><br />
+                        <img v-bind:src= card.thumbnails[1].url>  <br />
+
            <span> Name: {{ card.name }}</span ><br />
-                 <img v-bind:src= card.thumbnails[1].url>  <br />
 
            <span> BrowseId: {{ card.browseId }}</span ><br />
                              <button ><router-link :to="albumLink">Dela Album</router-link></button><br/><br/>
@@ -36,6 +37,7 @@
            <span> Album name: {{ card.album.name }}</span> <br />
              <span> MusicID: {{ card.videoId }}</span ><br />
                 <button @click="Play(card.videoId)">Spela</button><br/>
+                <button @click="queueSong(card.videoId)">Köa</button><br/>
                   <!-- <button @click="shareSong(card.name, card.artist.name,card.videoId)">Dela låt</button><br/><br/> -->
                   <button ><router-link :to="songLink">Dela låt</router-link></button><br/><br/>
                 
@@ -73,7 +75,6 @@
 </template>
 
 <script>
-
 export default {
   props: ["card", "type","browseId", "name"],
 
@@ -107,11 +108,11 @@ export default {
 
   methods: {
 
-sendToPlaylist(test){
-console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", test)
 
-//this.playList.push(videoId)
-},
+    // queueSong(id){
+
+    // },
+
   Play(id){
       // calling global variable
       window.player.loadVideoById(id)
@@ -216,6 +217,11 @@ console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", test)
       button:hover span:after {
         opacity: 1;
         right: 0;
+      }
+      button>a{
+                text-decoration: none;
+                color:white
+
       }
 
 </style>

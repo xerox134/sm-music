@@ -1,3 +1,4 @@
+
 <template>
   <div id="List">
 
@@ -253,6 +254,5 @@ li{
 
 }
 ol {
-  padding: 2vh 2vw;
 }
 </style>
