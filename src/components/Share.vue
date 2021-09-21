@@ -55,12 +55,20 @@
      <h1>Artist</h1>
   <h2>  {{$route.params.artistName}}</h2>
      
-   <button @click="PlayP(playList)">Play Album:</button>
+   <button @click="PlayP()">Play Album:</button>
    <p>id: {{$route.params.playlistId}} </p>
    
    <h1>Year</h1>
    <h2>{{$route.params.year}} </h2>
   
+
+  <h1>Songs:</h1>
+
+  <ol>
+        <li v-for="(sak, index) in getEverything"  :key="index">
+          <Card :card="sak" :type="'compare'" :browseId="$route.params.browseId" :name="$route.params.albumName" />
+        </li>
+      </ol> 
    
   
      
@@ -159,6 +167,12 @@ computed:{
     getThumbnail(){
       return this.$store.getters.getThumbnail
     },
+
+
+     getEverything() {
+            console.log("funkar??", this.$store.getters.getEverything)
+      return this.$store.getters.getEverything;
+    },
 },
   methods:{
    
@@ -234,7 +248,10 @@ async created() {
   width: 100%;
 }
 
+li{
+  list-style-type: none;
 
+}
 ol {
   padding: 2vh 2vw;
 }

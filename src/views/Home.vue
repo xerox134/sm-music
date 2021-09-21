@@ -21,9 +21,11 @@ export default {
 
 <style >
 #player {
+  background-color: rgba(0, 0, 0, 0.37);
   position: fixed;
   bottom: 0;
   width: 100%;
   text-align: center;
+  
 }
 </style>

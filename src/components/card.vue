@@ -49,6 +49,18 @@
            <span> {{ card.name }}</span ><br />
          
 
+    </div>    
+    
+    
+    
+    <div class="sharedArtist" v-if="type == 'compare'">
+
+<div v-if="name == card.album.name" >
+      <span>{{card.name}}</span>
+                      <button @click="Play(card.videoId)">Spela</button><br/>
+
+</div>
+
     </div> 
 
 
@@ -63,7 +75,14 @@
 <script>
 
 export default {
-  props: ["card", "type"],
+  props: ["card", "type","browseId", "name"],
+
+
+
+
+
+
+  
 
   computed: {
         artistLink(){
@@ -88,7 +107,11 @@ export default {
 
   methods: {
 
+sendToPlaylist(test){
+console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", test)
 
+//this.playList.push(videoId)
+},
   Play(id){
       // calling global variable
       window.player.loadVideoById(id)
@@ -144,11 +167,17 @@ export default {
 
 
   }, 
+
+
+
+
+
 }; 
 
 </script>
 
 <style scoped>
+
    button {
         display: inline-block;
         background-color: #414146;
