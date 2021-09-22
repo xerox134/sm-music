@@ -51,6 +51,7 @@ export default new Vuex.Store({
     setPlayList(state,payload){
       state.playList.push(payload)
     },
+  
     setSongInfo(state,payload){
       state.songInfo=payload
     },
@@ -119,36 +120,6 @@ export default new Vuex.Store({
   },
 
 
-
-  //   const songInfo = await axios.get("https://yt-music-api.herokuapp.com/api/yt/songs/" + this.$route.params.songName +  this.$route.params.artistName);
-  //   this.songInfo = songInfo.data.content[0];
- 
-  //   console.log(this.$route.params.songName , this.$route.params.artistName , this.$route.params.videoId)
-  //   console.log(songInfo.data.content[0])
- 
-   
- 
-  //  // GET request using axios with async/await
-  // const artistInfo = await axios.get("https://yt-music-api.herokuapp.com/api/yt/artist/" + this.$route.params.id);
-  //  this.artistInfo = artistInfo.data;
-  //  console.log("bajs:",this.artistInfo.error)
-  //   console.log("All info about the artist",this.artistInfo)
-  //    console.log('if this equals to the object, the artist is not found: Cannot read property \'hasOwnProperty\'of undefined',this.artistInfo.error)
-    
- 
-  //    const playList = await axios.get("https://yt-music-api.herokuapp.com/api/yt/playlist/" + this.$route.params.playlistId);
-  //  this.playList = playList;
-  //  console.log("detta är playlist jaopo" , playList)
- 
-
-
-
-
-
-
-
-
-
   },
 
 
@@ -163,43 +134,30 @@ export default new Vuex.Store({
       return state.allInfo
     },
     getMusicId(state) {
-
       return state.musicId;
     },
 
      getRandomNames(state) {
       console.log("random names", state.names)
-
       return state.names
     }, 
     
     getplayList(state) {
       console.log("nuvarande spellista", state.playList)
-
       return state.playList
     },
     getSongInfo(state){
       return state.songInfo
     },
-      getSongName(state){
-      return state.songName
-    }, 
     
-    getArtistName(state){
-      return state.artistName
-    },
-    getRouteParamId(state){
-      return state.routeParamId
-    },
-    getPlaylistParamId(state){
-      return state.playListParamId
-    },
     getPlayListInfo(state){
       return state.playListInfo
     },
     getArtistInfo(state){
       return state.artistInfo
-    }
+    },
+
+   
 
     
     

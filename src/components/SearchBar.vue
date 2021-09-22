@@ -25,8 +25,9 @@
                 v-model="searchPhrase"
         />
 </div> 
-  <span @click="hide()">⬅</span><button @click="searchForEverything(searchPhrase)">Sök</button>
-    <button @click="changeSuggestions">Byta förslag</button>
+  <span @click="hide()">⬅</span>
+  <button @click="searchForEverything(searchPhrase)">Sök</button>
+  <button @click="changeSuggestions">Byta förslag</button>
 </div>
 
 
