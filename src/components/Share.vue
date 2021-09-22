@@ -2,50 +2,62 @@
 <template>
   <div id="List">
 
+
+ <!------------------------------------------------------------>
+ <!--                   ARTIST CODE                          -->
+ <!------------------------------------------------------------>
     <div id="Artist">
 
- <!--                 ERROR HANDLER                     -->
-<!--                  ---------------                    -->
-       <div v-if="artistInfo.error=='utils.fv(...).forEach is not a function' && $route.params.type=='artist'">
+
+
+ <!--                 ERROR HANDLER                          -->
+       <div v-if="getArtistInfo.error=='utils.fv(...).forEach is not a function' && $route.params.type=='artist'">
       <h1>THIS ARTIST IS NOT AVAILABLE </h1>
       <button @click="home()"><h2>Back to homepage</h2></button>
    </div>
+ <!------------------------------------------------------------>
 
- <!--                   ARTIST CODE                     -->
-<!--                  ---------------                    -->
-    <div id="ArtistList" v-else-if="artistInfo.error != 'Cannot read property \'hasOwnProperty\' of undefined'&& $route.params.type=='artist' " >
+
+
+
+    <div id="ArtistList" v-else-if="getArtistInfo.error != 'Cannot read property \'hasOwnProperty\' of undefined'&& $route.params.type=='artist' " >
       <h1>Artist:</h1>
-      <h1>{{ artistInfo.name }}</h1>
+      <h1>{{ getArtistInfo.name }}</h1>
 
                   <img v-bind:src= thumbnailDecode>
 
-      <p>{{ artistInfo.description }}</p>
+      <p>{{ getArtistInfo.description }}</p>
       <h2>SONGS:</h2>
       
 
       <ol>
-        <li v-for="(sak, index) in artistInfo.products.songs.content"  :key="index">
+        <li v-for="(sak, index) in getArtistInfo.products.songs.content"  :key="index">
           <Card :card="sak" :type="'sharedArtist'" />
         </li>
       </ol> 
 
-      <h2>Total views: {{ artistInfo.views }}</h2>
+      <h2>Total views: {{ getArtistInfo.views }}</h2>
 
       <h1>_____________________________________</h1>
     </div> 
 
-  <!--                 ERROR HANDLER                     -->
-<!--                  ---------------                    -->
 
-   
-    <div v-else-if="$route.params.type=='artist'">
+ <!------------------------------------------------------------>
+ <!--                 ERROR HANDLER                         -->
+     
+      <div v-else-if="$route.params.type=='artist'">
       <h1>THIS ARTIST IS NOT AVAILABLE </h1>
       <button @click="home()"><h2>Back to homepage</h2></button>
     </div>
 
     </div>
  
- 
+
+
+
+ <!------------------------------------------------------------>
+ <!--                   ALBUM CODE                          -->
+ <!------------------------------------------------------------>
  
   <div id="Album" v-if="$route.params.type=='album' "> 
   <div id="AlbumList"> 
@@ -79,22 +91,23 @@
     </div>
 
 
+<!------------------------------------------------------------>
+ <!--                   SONG CODE                          -->
+ <!-------------------------------------------------------------->
 
-
-<div id="Song" v-if="$route.params.type=='song' && songInfo.id == $route.params.id">
+<div id="Song" v-if="$route.params.type=='song' && getSongInfo.id == $route.params.id">
    <div id="SongList">
       <ol>
         <h1>Song:</h1>
             <img v-bind:src= thumbnailDecode>
 
-     <h2>{{songInfo.name}}</h2>
+     <h2>{{getSongInfo.name}}</h2>
 
     <h1>Artist</h1>
      
-     <h2 v-if="songInfo.artist.name==$route.params.artistName">{{songInfo.artist.name}}
-   </h2>
+   
 
-     <h2 v-else-if="songInfo.artist[0].name==$route.params.artistName">{{songInfo.artist[0].name}}</h2>
+     <h2 v-if="getSongInfo.artist.name==getArtistName">{{getSongInfo.artist.name}}</h2>
        <button @click="Play($route.params.videoId)">PLAY THIS TRACK!</button>
       </ol>
     </div> 
@@ -106,7 +119,7 @@
 
     </div>
 
-    
+   
 
 
   
@@ -114,7 +127,8 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
+
 import Card from "../components/card.vue"
 
 export default {
@@ -133,11 +147,11 @@ export default {
     //  albumName:this.$route.params.albumName,
     //  playlistId:this.$route.params.playlistId,
     //  year:this.$route.params.year,
+    //  albumInfo:{},
 
-      artistInfo:{},
-     albumInfo:{},
-     songInfo:{},
-     playList:{},
+    //   artistInfo:{},
+    //  songInfo:{},
+    //  playList:{},
      thumbnailDecode: decodeURIComponent(this.$route.params.thumbnail)
      
      
@@ -149,25 +163,41 @@ export default {
   },
 
 
-computed:{
+ computed:{
 
-
-       getAlbumName(){
-         console.log("vad får jag ut",this.$store.getters.getAlbumName )
-      return this.$store.getters.getAlbumName
+   getSongInfo(){
+      return this.$store.getters.getSongInfo;
     },
+
+  getRouteParamId(){
+      return this.$store.getters.getRouteParamId;
+    },
+    getPlaylistParamId(){
+      return this.$store.getters.getPlaylistParamId;
+    },
+    getPlayListInfo(){
+      return this.$store.getters.getPlayListInfo;
+    },
+    getArtistInfo(){
+      return this.$store.getters.getArtistInfo;
+    },
+
+
+
+
+
+
+
+
+  getSongName(){
+      return this.$store.getters.getSongName;
+    }, 
+    
     getArtistName(){
-     return this.$store.getters.getArtistName
+      return this.$store.getters.getArtistName;
     },
-    getPlaylistId(){
-      return this.$store.getters.getPlaylistId
-    },
-    getYear(){
-      return this.$store.getters.getYear
-    },
-    getThumbnail(){
-      return this.$store.getters.getThumbnail
-    },
+    
+   
 
 
      getEverything() {
@@ -175,6 +205,11 @@ computed:{
       return this.$store.getters.getEverything;
     },
 },
+
+
+
+
+
   methods:{
    
 Play(id){
@@ -183,8 +218,8 @@ Play(id){
       window.player.playVideo()
      
     },
-    PlayP(playList){
-console.log("metoden:", playList)
+    PlayP(getPlayListInfo){
+console.log("metoden:", getPlayListInfo)
     },
   home(){
      
@@ -197,34 +232,50 @@ console.log("metoden:", playList)
   },
 
 
+ mounted(){
+ 
+// Send parameters so that fetches can be done.
+  this.$store.commit("setSongName", this.$route.params.songName);
+  this.$store.commit("setArtistName", this.$route.params.artistName);
+  this.$store.commit("setRouteParamId", this.$route.params.id);
+  this.$store.commit("setPlaylistParamId", this.$route.params.playlistId);
+
+  this.$store.dispatch("fetchsongInfo");
+  this.$store.dispatch("fetchArtistInfo");
+  this.$store.dispatch("fetchPlayListInfo");
+
+
+     
+},
 
 
 async created() {
+ 
+  //  playlistId,id,videoId,songName,artistName
+ 
 
-   
-   
     
-   const songInfo = await axios.get("https://yt-music-api.herokuapp.com/api/yt/songs/" + this.$route.params.songName +  this.$route.params.artistName);
-   this.songInfo = songInfo.data.content[0];
+  //  const songInfo = await axios.get("https://yt-music-api.herokuapp.com/api/yt/songs/" + this.$route.params.songName +  this.$route.params.artistName);
+  //  this.songInfo = songInfo.data.content[0];
 
-   console.log(this.$route.params.songName , this.$route.params.artistName , this.$route.params.videoId)
-   console.log(songInfo.data.content[0])
+  //  console.log(this.$route.params.songName , this.$route.params.artistName , this.$route.params.videoId)
+  //  console.log(songInfo.data.content[0])
 
   
 
-  // GET request using axios with async/await
- const artistInfo = await axios.get("https://yt-music-api.herokuapp.com/api/yt/artist/" + this.$route.params.id);
-  this.artistInfo = artistInfo.data;
-  console.log("bajs:",this.artistInfo.error)
-   console.log("All info about the artist",this.artistInfo)
-    console.log('if this equals to the object, the artist is not found: Cannot read property \'hasOwnProperty\'of undefined',this.artistInfo.error)
+ // GET request using axios with async/await
+//  const artistInfo = await axios.get("https://yt-music-api.herokuapp.com/api/yt/artist/" + this.$route.params.id);
+//   this.artistInfo = artistInfo.data;
+//   console.log("bajs:",this.artistInfo.error)
+//    console.log("All info about the artist",this.artistInfo)
+//     console.log('if this equals to the object, the artist is not found: Cannot read property \'hasOwnProperty\'of undefined',this.artistInfo.error)
    
 
-    const playList = await axios.get("https://yt-music-api.herokuapp.com/api/yt/playlist/" + this.$route.params.playlistId);
-  this.playList = playList;
-  console.log("detta är playlist jaopo" , playList)
+  //   const playList = await axios.get("https://yt-music-api.herokuapp.com/api/yt/playlist/" + this.$route.params.playlistId);
+  // this.playList = playList;
+  // console.log("detta är playlist jaopo" , playList)
 
-}
+ }
 
 
 
