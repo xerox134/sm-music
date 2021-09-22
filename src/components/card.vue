@@ -24,7 +24,7 @@
     <!--                           Album                                -->
     <!-------------------------------------------------------------------->
 
-    <div class="Album" v-if="card.type == 'album' && type == 'album'">
+    <div class="Album" v-if="card.type == 'album'  && type == 'album' || card.type == 'ep' && type == 'album'">
       <span> type: {{ card.type }}</span
       ><br />
       <img v-bind:src="card.thumbnails[1].url" /> <br />

@@ -1,61 +1,38 @@
 <template>
-   <div id="everything">
+<div id="everything">
    
 
 
 <div id="mySidenav" class="sidenav">
-<a href="#">Hem</a>
-
-<p @click="Search()">Sök</p>
-
-
-<a href="#">Spellista</a>
-  
-  <a href="#">Om oss</a>
-
-
- 
-  
-  
+  <a href="#">Hem</a>
+    <p @click="Search()">Sök</p>
+      <a href="#">Spellista</a>
+        <a href="#">Om oss</a>
 </div>
 
- <div id="cssMain">
 
 
+<div id="cssMain">
 
- <div id="Search"  v-show="toggleSearchBar">
-      <div class="searchContainer">
-        <input
-          id="searchBar"
+<div id="Search"  v-show="toggleSearchBar">
+  <div class="searchContainer">
+      <input
+        id="searchBar"
           v-on:keyup.enter="searchForEverything(searchPhrase)"
-          type="text"
-          name="everything"
-          placeholder="Artist/Låt/Album"
-          v-model="searchPhrase"
+            type="text"
+             name="everything"
+              placeholder="Artist/Låt/Album"
+                v-model="searchPhrase"
         />
-      </div> 
-
-      
-      <span @click="hide()">⬅</span><button @click="searchForEverything(searchPhrase)">Sök</button>
-   <button @click="changeSuggestions">Byta förslag</button>
-
-
-        <div>
-
-        </div>
-    </div>
+</div> 
+  <span @click="hide()">⬅</span><button @click="searchForEverything(searchPhrase)">Sök</button>
+    <button @click="changeSuggestions">Byta förslag</button>
+</div>
 
 
 
 
-
-
-
-
-    <div id="SearchList">
-
-
-
+<div id="SearchList">
 
   <ol>
       <h1>Låtar:</h1>
@@ -66,15 +43,12 @@
 
 
     <ol>
-  
       <h1>Artister:</h1>
       <li v-for="(find, index) in getEverything" :key="index">
         <Card :card="find" :type="'artist'" />
       </li>
     </ol>
     
-    
-   
     
     <ol>
       <h1>Album:</h1>
@@ -83,8 +57,6 @@
       </li>
     </ol>
   </div>
-
-
 
 
    </div>
@@ -100,21 +72,21 @@ export default {
 
      data(){
          return {
-       
-
            toggleSearchBar:false,
           searchPhrase:this.searchPhrase
          }
      },
+
+
     components:{
         Card,
         
     },
 
     computed:{
-        getEverything() {
-            console.log("funkar??", this.$store.getters.getEverything)
-      return this.$store.getters.getEverything;
+      getEverything() {
+        console.log("funkar??", this.$store.getters.getEverything)
+         return this.$store.getters.getEverything;
     },
 
    
@@ -122,32 +94,31 @@ export default {
     },
     methods:{
 
-          Search(){
-          this.toggleSearchBar=true
-            }, 
-            hide(){
-               this.toggleSearchBar=false },
+     Search(){
+      this.toggleSearchBar=true
+     }, 
 
-         searchForEverything(searchPhrase) {
-        this.$store.commit("setSearchPhrase", searchPhrase);
+     hide(){
+      this.toggleSearchBar=false 
+    },
+
+     searchForEverything(searchPhrase) {
+      this.$store.commit("setSearchPhrase", searchPhrase);
         this.$store.dispatch("fetchEverything"); 
     },
 
-      changeSuggestions() {
-        
+     changeSuggestions() { 
       let array = this.$store.getters.getRandomNames[Math.floor(Math.random()*this.$store.getters.getRandomNames.length)];
         this.$store.commit("setSearchPhrase", array);
-                this.$store.dispatch("fetchEverything"); 
-
-        }
-    
+          this.$store.dispatch("fetchEverything"); 
     },
+    
+      },
 
-    beforeMount() {
-      let array = this.$store.getters.getRandomNames[Math.floor(Math.random()*this.$store.getters.getRandomNames.length)];
-        this.$store.commit("setSearchPhrase", array);
-                this.$store.dispatch("fetchEverything"); 
-
+   
+   
+   beforeMount() {
+    this.changeSuggestions()
         },
 
 }

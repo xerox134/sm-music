@@ -1,15 +1,14 @@
 <template>
   <div id="Player">
-      <button @click="previous()">⏮</button>
-    <button id="jobbig" @click="play(getMusicId)">▶</button>
-      <button @click="pause()">⏸</button>
-      <button @click="resume()">⏯ </button>
+    <button @click="previous()">⏮</button>
+    <button @click="play(getMusicId)">▶</button>
+    <button @click="pause()">⏸</button>
+    <button @click="resume()">⏯ </button>
     <button @click="next(getPlayList)">⏭</button>
     <button @click="playlist(getPlayList)">Playlist</button>
     <button @click="clear()">Clear</button>
   
-    
-    
+   
   </div>
 </template>
 
