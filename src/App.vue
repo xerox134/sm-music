@@ -2,14 +2,10 @@
   <div id="APP">
     
     
-    <header>
-      <h1>SM MUSIC</h1>
-      <h2>The only music place you need!</h2>
-    </header>
+    
 
-   
+
     <div id="player"><Player /></div>
-
     <router-view />
   </div>
 
@@ -31,6 +27,17 @@ export default {
 <style>
 
 
+
+#player {
+  background-color: rgba(0, 0, 0, 0.37);
+  position: fixed;
+  bottom: 0;
+  width: 90%;
+  margin-left:10% ;
+  text-align: center;
+  
+}
+
 body,html {
   padding: 0;
   margin: 0;
@@ -41,8 +48,5 @@ body,html {
 }
 
 
-header {
-  text-align: center;
-  text-shadow: 3px 3px 3px rgba(255, 255, 255, 0.185);
-}
+
 </style>

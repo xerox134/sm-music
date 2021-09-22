@@ -24,7 +24,7 @@
     <!--                           Album                                -->
     <!-------------------------------------------------------------------->
 
-    <div class="Album" v-if="card.type == 'album'  && type == 'album' || card.type == 'ep' && type == 'album'">
+    <div class="Album" v-if="card.type == 'album'  && type == 'album' || card.type == 'ep' && type == 'album'" >
       <span> type: {{ card.type }}</span
       ><br />
       <img v-bind:src="card.thumbnails[1].url" /> <br />
@@ -43,7 +43,7 @@
     <!--                            SONG                                -->
     <!-------------------------------------------------------------------->
 
-    <div class="Song" v-if="card.type == 'song' && type == 'song'">
+    <div class="Song" v-if="card.type == 'song' && type == 'song' ">
       <span> Type: {{ card.type }}</span
       ><br />
       <img v-bind:src="card.thumbnails[1].url" /> <br />
@@ -161,6 +161,17 @@ export default {
 </script>
 
 <style scoped>
+
+.Song{
+        margin-left:20px;
+        margin-right:20px;  
+        background: #00000077;
+        min-width: 20vw;
+        max-width: 20vw;
+
+
+}
+
 #playButtons {
   display: flex;
   justify-content: center;
@@ -170,7 +181,7 @@ button {
   display: inline-block;
   background-color: #414146;
   border-radius: 5px;
-  border: 4px double #cccccc;
+  border: 4px solid #cccccc;
   color: #eeeeee;
   text-align: center;
   font-size: 12px;

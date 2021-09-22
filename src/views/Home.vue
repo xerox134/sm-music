@@ -1,7 +1,8 @@
 <template>
   <div id="Home">
-
+<div id="SideNav"><SideNav /></div>
     <div id="Search"><Search /></div>
+    
     
   </div>
 </template>
@@ -9,24 +10,29 @@
 
 <script>
 import Search from "../components/SearchBar.vue";
+import SideNav from "../components/SideNav.vue";
 
 export default {
   name: "Home",
 
   components: {
-    Search
+    Search,
+    SideNav
   },
 };
 </script>
 
 
-<style >
-#player {
-  background-color: rgba(0, 0, 0, 0.37);
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
+<style>
+#Search{
+  width: 88vw;
   
 }
+#SideNav{
+  width: 12vw;
+}
+#Home{
+  display: flex;
+}
+
 </style>
