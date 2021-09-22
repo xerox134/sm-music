@@ -56,8 +56,8 @@
       <span> MusicID: {{ card.videoId }}</span
       ><br />
       <div id="playButtons">
-        <button @click="Play(card.videoId)">Spela</button><br />
-        <button @click="queueSong(card.videoId)">Köa</button><br />
+        <button @click="Play(card.videoId, card.name)">Spela</button><br />
+        <button @click="queueSong(card.videoId, card.name)">Köa</button><br />
       </div>
       <button><router-link :to="songLink">Dela låt</router-link></button
       ><br /><br />
@@ -81,7 +81,7 @@
     <div class="sharedAlbum" v-if="type == 'compare'">
       <div v-if="name == card.album.name">
         <span>{{ card.name }}</span>
-        <button @click="Play(card.videoId)">Spela</button><br />
+        <button @click="Play(card.videoId, card.name)">Spela</button><br />
       </div>
     </div>
   </div>
@@ -142,13 +142,14 @@ export default {
   },
 
   methods: {
-    queueSong(id) {
-      this.$store.commit("setPlayList", id);
+    queueSong(id,name) {
+      this.$store.commit("setPlayList", {id,name});
       console.log(this.$store.getters.getplayList);
     },
 
-    Play(id) {
-      // calling global variable
+    Play(id, name) {
+      
+      this.$store.commit("setCurrentPlaying", name);
       window.player.loadVideoById(id);
       window.player.playVideo();
     },

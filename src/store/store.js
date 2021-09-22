@@ -33,6 +33,9 @@ export default new Vuex.Store({
     routeParamId:"",
     playListInfo:{},
     artistInfo:{},
+    currentPlaying:"",
+    index:0
+
   },
 
   //_________________________________________________________________________________________________________________________________________________________________________________
@@ -49,6 +52,7 @@ export default new Vuex.Store({
     },
   
     setPlayList(state,payload){
+      
       state.playList.push(payload)
     },
   
@@ -72,6 +76,14 @@ export default new Vuex.Store({
     },
     setPlayListInfo(state,payload){
       state.playListInfo=payload
+    },
+    setCurrentPlaying(state,payload){
+      state.currentPlaying=payload
+    },
+    setMinusIndex(state,payload){
+      state.index=state.index-payload
+    }, setPlusIndex(state,payload){
+      state.index=state.index+payload
     }
 
     
@@ -156,6 +168,12 @@ export default new Vuex.Store({
     getArtistInfo(state){
       return state.artistInfo
     },
+    getCurrentPlaying(state){
+      return state.currentPlaying
+    },
+    getIndex(state){
+      return state.index
+    }
 
    
 
