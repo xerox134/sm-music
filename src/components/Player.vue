@@ -4,8 +4,9 @@
     <button id="jobbig" @click="play(getMusicId)">▶</button>
       <button @click="pause()">⏸</button>
       <button @click="resume()">⏯ </button>
-    <button @click="next()">⏭</button>
-    <button @click="playlist(['zUfF64RVBcI','s3rayOZULWE'])">Playlist</button>
+    <button @click="next(getPlayList)">⏭</button>
+    <button @click="playlist(getPlayList)">Playlist</button>
+    <button @click="clear()">Clear</button>
   
     
     
@@ -18,6 +19,10 @@ export default {
 
 
   computed:{
+
+    getPlayList(){
+      return this.$store.getters.getplayList
+    },
 getMusicId(){
   return this.$store.getters.getMusicId;
 }
@@ -45,11 +50,18 @@ getMusicId(){
 
     playlist(ids){
         window.player.loadPlaylist(ids)
-        window.player.nextVideo()
     },
 
     next(){
+
            window.player.nextVideo()
+    },
+    clear(){
+          console.log(this.$store.getters.getplayList)
+
+      this.$store.state.playList=[]
+    console.log(this.$store.getters.getplayList)
+
     }
   }
 }

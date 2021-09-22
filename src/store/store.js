@@ -31,7 +31,8 @@ export default new Vuex.Store({
     ArtistName: "",
     PlaylistId: "",
     Year: "",
-    Thumbnail: ""
+    Thumbnail: "",
+    playList:[]
 
 
   },
@@ -56,36 +57,40 @@ export default new Vuex.Store({
     },
 
     setSong(state, payload) {
-      state.shareSong = payload
+      state.shareSong.push(payload)
     },
 
 
 
 
-    setAlbumName(state, payload) {
-      state.AlbumName = payload
-      console.log("vad fpr vi bram", state.AlbumName)
-    },
-    setArtistName(state, payload) {
-      state.ArtistName = payload
-      console.log("vad fpr vi bram", state.ArtistName)
+    // setAlbumName(state, payload) {
+    //   state.AlbumName = payload
+    //   console.log("vad fpr vi bram", state.AlbumName)
+    // },
+    // setArtistName(state, payload) {
+    //   state.ArtistName = payload
+    //   console.log("vad fpr vi bram", state.ArtistName)
 
-    },
-    setPlaylistId(state, payload) {
-      state.PlaylistId = payload
-      console.log("vad fpr vi bram", state.PlaylistId)
+    // },
+    // setPlaylistId(state, payload) {
+    //   state.PlaylistId = payload
+    //   console.log("vad fpr vi bram", state.PlaylistId)
 
-    },
-    setYear(state, payload) {
-      state.Year = payload
-      console.log("vad fpr vi bram", state.Year)
+    // },
+    // setYear(state, payload) {
+    //   state.Year = payload
+    //   console.log("vad fpr vi bram", state.Year)
 
-    },
-    setThumbnail(state, payload) {
-      state.Thumbnail = payload
-      console.log("vad fpr vi bram", state.Thumbnail)
+    // },
+    // setThumbnail(state, payload) {
+    //   state.Thumbnail = payload
+    //   console.log("vad fpr vi bram", state.Thumbnail)
 
-    },
+    // },
+
+    setPlayList(state,payload){
+      state.playList.push(payload)
+    }
   },
 
   //_________________________________________________________________________________________________________________________________________________________________________________
@@ -171,6 +176,12 @@ export default new Vuex.Store({
       console.log("vad får jag ut2", state.names)
 
       return state.names
+    }, 
+    
+    getplayList(state) {
+      console.log("vad får jag ut2", state.playList)
+
+      return state.playList
     },
 
 

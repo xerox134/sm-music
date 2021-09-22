@@ -12,17 +12,6 @@ import Share from "../components/Share.vue";
 export default {
  name: "Shared",
 
-
- mounted: function() {
-       const parameters = this.$route.parameters
-        console.log(parameters)
-   
-       const id = this.$route.query.id
-        console.log(id)
-  
-    },
-
-
   components: {
     Share,
    
@@ -33,6 +22,6 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 
 </style>

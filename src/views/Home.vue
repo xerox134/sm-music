@@ -2,6 +2,7 @@
   <div id="Home">
 
     <div id="Search"><Search /></div>
+    
   </div>
 </template>
 

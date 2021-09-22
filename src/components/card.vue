@@ -36,8 +36,12 @@
          <span> Artist name: {{ card.artist.name }}</span ><br />
            <span> Album name: {{ card.album.name }}</span> <br />
              <span> MusicID: {{ card.videoId }}</span ><br />
+             <div id="playButtons">
+
                 <button @click="Play(card.videoId)">Spela</button><br/>
                 <button @click="queueSong(card.videoId)">Köa</button><br/>
+                
+                </div>
                   <!-- <button @click="shareSong(card.name, card.artist.name,card.videoId)">Dela låt</button><br/><br/> -->
                   <button ><router-link :to="songLink">Dela låt</router-link></button><br/><br/>
                 
@@ -48,18 +52,17 @@
 
     <div class="sharedArtist" v-if="type == 'sharedArtist'">
     
-           <span> {{ card.name }}</span ><br />
-         
+           <span> {{ card.name }}</span ><br />         
 
     </div>    
     
     
     
-    <div class="sharedArtist" v-if="type == 'compare'">
+    <div class="sharedAlbum" v-if="type == 'compare'">
 
 <div v-if="name == card.album.name" >
       <span>{{card.name}}</span>
-                      <button @click="Play(card.videoId)">Spela</button><br/>
+        <button @click="Play(card.videoId)">Spela</button><br/>
 
 </div>
 
@@ -81,6 +84,7 @@ export default {
 
 
 
+ 
 
 
   
@@ -109,9 +113,11 @@ export default {
   methods: {
 
 
-    // queueSong(id){
-
-    // },
+    queueSong(id){
+        this.$store.commit("setPlayList", id);
+       
+console.log(this.$store.getters.getplayList)
+    },
 
   Play(id){
       // calling global variable
@@ -178,6 +184,12 @@ export default {
 </script>
 
 <style scoped>
+
+#playButtons{
+  display: flex;
+  justify-content: center;
+  
+}
 
    button {
         display: inline-block;

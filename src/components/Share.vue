@@ -13,7 +13,7 @@
 
  <!--                   ARTIST CODE                     -->
 <!--                  ---------------                    -->
-    <div id="ArtistList" v-else-if="artistInfo.error != 'Cannot read property \'hasOwnProperty\' of undefined'&& $route.params.type=='artist' ">
+    <div id="ArtistList" v-else-if="artistInfo.error != 'Cannot read property \'hasOwnProperty\' of undefined'&& $route.params.type=='artist' " >
       <h1>Artist:</h1>
       <h1>{{ artistInfo.name }}</h1>
 
@@ -239,6 +239,7 @@ async created() {
 </script>
 
 <style scoped>
+
 #ArtistList {
   width: 100%;
 }
