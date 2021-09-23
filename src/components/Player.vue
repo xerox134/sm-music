@@ -1,6 +1,6 @@
 <template>
   <div id="Player">
-    <div>Now playing:{{ getCurrentPlaying }}</div>
+    <div>Now playing: {{ getCurrentPlaying }}</div>
     <div>
       <button @click="previous(getPlayList)">⏮</button>
       <button @click="playlist(getPlayList)">▶</button>
@@ -15,11 +15,7 @@
 
 <script>
 export default {
-  // data(){
-  //   return{
-  //     index:0
-  //   }
-  // },
+
 
   computed: {
     getCurrentPlaying() {

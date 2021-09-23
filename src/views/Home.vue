@@ -1,6 +1,5 @@
 <template>
   <div id="Home">
-<div id="SideNav"><SideNav /></div>
     <div id="Search"><Search /></div>
     
     
@@ -10,29 +9,29 @@
 
 <script>
 import Search from "../components/SearchBar.vue";
-import SideNav from "../components/SideNav.vue";
 
 export default {
   name: "Home",
 
   components: {
     Search,
-    SideNav
+    
   },
 };
 </script>
 
 
 <style>
+
 #Search{
-  width: 88vw;
-  
+  margin-left: 11%;
 }
-#SideNav{
-  width: 12vw;
+
+@media screen and (max-width: 1000px) {
+  #Search{
+  margin-left: 0%
 }
-#Home{
-  display: flex;
-}
+} 
+
 
 </style>

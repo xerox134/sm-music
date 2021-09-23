@@ -1,8 +1,11 @@
 
 <template>
-  <div id="List">
+  
+  <div id="everything">
+  
+  <div id="oneThreeVw">13% of site</div>
 
-
+<div id="Container">
  <!------------------------------------------------------------>
  <!--                   ARTIST CODE                          -->
  <!------------------------------------------------------------>
@@ -42,21 +45,19 @@
   </div>
  
 
-
  <!------------------------------------------------------------>
  <!--                   ALBUM CODE                          -->
  <!------------------------------------------------------------>
  
   <div id="Album" v-if="$route.params.type=='album' "> 
-    
+    <div>
     <h1>Album:</h1>
       <img v-bind:src= thumbnailDecode>
         <h2>{{$route.params.albumName}}</h2>
      
      <h1>Artist</h1>
       <h2>{{$route.params.artistName}}</h2>
-        <button @click="PlayP()">Play Album:</button>
-          <p>id: {{$route.params.playlistId}} </p>
+        
    
 
     <h1>Year</h1>
@@ -71,7 +72,7 @@
     
      </ol> 
    
-    
+    </div>
     </div>
 
 
@@ -82,13 +83,13 @@
 <div id="Song" v-if="$route.params.type=='song' && getSongInfo.id == $route.params.id">
       <div v-if="getSongInfo.artist.name==$route.params.artistName">
      
-        <h1>Song:</h1>
-         <img v-bind:src= thumbnailDecode>
             <h2>{{getSongInfo.name}}</h2>
+         <img v-bind:src= thumbnailDecode>
+        
     
         <h1>Artist</h1>
          <h2>{{getSongInfo.artist.name}}</h2>
-          <button @click="Play($route.params.videoId)">PLAY THIS TRACK!</button> 
+          <button @click="Play($route.params.videoId,getSongInfo.name)">PLAY THIS TRACK!</button> 
       </div>
    
 
@@ -99,6 +100,7 @@
 
 </div> 
 
+</div>
   
   </div>
 </template>
@@ -156,12 +158,14 @@ export default {
 
   methods:{
    
-  Play(id){
-    window.player.loadVideoById(id)
-    window.player.playVideo() 
+  Play(id,name){
+    this.$store.commit("setCurrentPlaying", name);
+      window.player.loadVideoById(id);
+      window.player.playVideo();
     },
    
   PlayP(getPlayListInfo){
+    
     console.log("metoden:", getPlayListInfo)
     },
   },
@@ -192,6 +196,56 @@ export default {
 
 <style scoped>
 
+#Song>div{
+  padding: 10vh 10vw;
+  align-items: center;
+  text-align: center;
+  border: 2px solid gold;
+  background-color:rgba(0, 0, 0, 0.459) ;
+
+
+}
+#Artist>#ArtistList{
+  display: flex;
+  flex-direction: column;
+  padding: 5vh 5vw;
+  align-items: center;
+  text-align: center;
+  border: 2px solid gold;
+  background-color:rgba(0, 0, 0, 0.459) ;
+
+
+}
+
+#Album>div{
+  padding: 10vh 10vw;
+  align-items: center;
+  text-align: center;
+  border: 2px solid gold;
+  background-color:rgba(0, 0, 0, 0.459) ;
+
+}#Container{
+  width:87vw;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+ 
+}
+
+
+
+
+
+#everything{
+  display: flex;
+    height: 100vh;
+}
+
+#oneThreeVw{
+  width: 13vw;
+}
 li{
   list-style-type: none;
 }

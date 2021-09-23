@@ -6,15 +6,13 @@
     <!--                           ARTIST                               -->
     <!-------------------------------------------------------------------->
 
-    <div class="Artist" v-if="card.type == 'artist' && type == 'artist'">
-      <span> type: {{ card.type }}</span
-      ><br />
+    <div class="objects" id="Artist" v-if="card.type == 'artist' && type == 'artist'">
+      <br />
       <img v-bind:src="card.thumbnails[1].url" /> <br />
-
-      <span> Artist name: {{ card.name }}</span
+<br />
+      <span> {{ card.name }}</span
       ><br />
-      <span> Browse ID: {{ card.browseId }}</span
-      ><br />
+      <br />
       <button><router-link :to="artistLink">Dela Artist</router-link></button
       ><br /><br />
     </div>
@@ -24,16 +22,16 @@
     <!--                           Album                                -->
     <!-------------------------------------------------------------------->
 
-    <div class="Album" v-if="card.type == 'album'  && type == 'album' || card.type == 'ep' && type == 'album'" >
-      <span> type: {{ card.type }}</span
-      ><br />
+    <div class="objects" id="Album" v-if="card.type == 'album'  && type == 'album' || card.type == 'ep' && type == 'album'" >
+      <br />
       <img v-bind:src="card.thumbnails[1].url" /> <br />
 
+<br />
       <span> Name: {{ card.name }}</span
       ><br />
 
-      <span> BrowseId: {{ card.browseId }}</span
-      ><br />
+     
+      <br />
       <button><router-link :to="albumLink">Dela Album</router-link></button
       ><br /><br />
     </div>
@@ -43,18 +41,18 @@
     <!--                            SONG                                -->
     <!-------------------------------------------------------------------->
 
-    <div class="Song" v-if="card.type == 'song' && type == 'song' ">
-      <span> Type: {{ card.type }}</span
-      ><br />
+    <div class="objects" id="Song" v-if="card.type == 'song' && type == 'song' ">
+      
+      <br />
       <img v-bind:src="card.thumbnails[1].url" /> <br />
 
-      <span> Name: {{ card.name }}</span
+      <span>  {{ card.name }}</span
       ><br />
-      <span> Artist name: {{ card.artist.name }}</span
+      <span> Artist: {{ card.artist.name }}</span
       ><br />
-      <span> Album name: {{ card.album.name }}</span> <br />
-      <span> MusicID: {{ card.videoId }}</span
-      ><br />
+      <span> Album: {{ card.album.name }}</span> <br />
+     
+      
       <div id="playButtons">
         <button @click="Play(card.videoId, card.name)">Spela</button><br />
         <button @click="queueSong(card.videoId, card.name)">Köa</button><br />
@@ -68,7 +66,7 @@
     <!--                        sharedArtist                            -->
     <!-------------------------------------------------------------------->
 
-    <div class="sharedArtist" v-if="type == 'sharedArtist'">
+    <div class="objects" id="sharedArtist" v-if="type == 'sharedArtist'">
       <span> {{ card.name }}</span
       ><br />
     </div>
@@ -78,7 +76,7 @@
     <!--                       sharedAlbum                              -->
     <!-------------------------------------------------------------------->
 
-    <div class="sharedAlbum" v-if="type == 'compare'">
+    <div class="objects" id="sharedAlbum" v-if="type == 'compare'">
       <div v-if="name == card.album.name">
         <span>{{ card.name }}</span>
         <button @click="Play(card.videoId, card.name)">Spela</button><br />
@@ -162,16 +160,12 @@ export default {
 
 <style scoped>
 
-.Song{
-        margin-left:20px;
-        margin-right:20px;  
-        background: #00000077;
-        min-width: 20vw;
-        max-width: 20vw;
 
 
+img{
+  width: 50%;
+  border: 2px solid gold;
 }
-
 #playButtons {
   display: flex;
   justify-content: center;
@@ -181,45 +175,51 @@ button {
   display: inline-block;
   background-color: #414146;
   border-radius: 5px;
-  border: 4px solid #cccccc;
+  border: 2px solid #cccccc;
   color: #eeeeee;
   text-align: center;
   font-size: 12px;
   padding: 6px;
-  width: 100px;
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
 }
-button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-button span:after {
-  content: "\00bb";
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
+
+
 button:hover {
   background-color: #090b20;
   font-size: 13px;
 }
-button:hover span {
-  padding-right: 25px;
-}
-button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
+
+
 button > a {
   text-decoration: none;
   color: white;
 }
+
+
+
+
+
+@media screen and (min-width: 850px) {
+  .objects{
+        margin-right:40px;  
+        background: #00000077;
+        min-width: 20vw;
+        max-width: 20vw;
+        min-height: 100%;
+        
+          border:  2px solid rgba(255, 217, 0, 0.356);
+}
+ 
+ 
+} 
+
+
+
+
+
+
 </style>
 
 

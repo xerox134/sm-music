@@ -1,8 +1,10 @@
 <template>
-<div class="sidenav">
-        <img src="@/assets/img/smLogo2.png" style="width:12vw;"/>
 
-  <a href="#">Hem</a>
+
+<div class="sidenav">
+        <img src="@/assets/img/smLogo2.png" style="width:11vw;"/>
+
+  <a href="/">Hem</a>
     <p @click="Search()">Sök</p>
 
    
@@ -21,8 +23,8 @@
 </div> 
 
 <div id="searchChangeButtons">
-  <button @click="searchForEverything(searchPhrase)">Sök</button>
-  <button @click="changeSuggestions">Byta förslag</button>
+  <button class="button" @click="searchForEverything(searchPhrase)">Sök</button>
+  <button class="button" @click="changeSuggestions">🔁</button>
   </div>
 </div>
 
@@ -32,6 +34,9 @@
       <a href="#">Spellista</a>
         <a href="#">Om oss</a>
 </div>
+
+
+
 </template>
 
 <script>
@@ -88,11 +93,13 @@ export default {
 <style scope>
 
 #searchChangeButtons{
-padding-left: 0.5%;
+  display: flex;
 }
 
+
+
 .searchContainer{
-padding-left: 1.5%;
+padding-left: 0.5%;
 }
 
 
@@ -110,19 +117,16 @@ input{
 
 /*-----BUTTON----*/
 
- button {
-        display: inline-block;
+ .button {
         background-color: #414146;
         border-radius: 10%;
-   
-        border: 1px double #252424;
         color: #000000;
         text-align: center;
-        font-size: 12px;
-        padding: 3px;
-        width: 100px;
+        font-size: 85%;
+        width: 40%;
+        height: 25px;
         cursor: pointer;
-        margin: 5px;
+        margin: 2%;
       }
    
 
@@ -130,11 +134,10 @@ input{
 
 .sidenav {
   height: 100%;
-  width: 12vw;
+  width: 11vw;
   position: fixed;
   z-index: 1;
   top: 0;
-  left: 0;
   background-color: rgb(12, 12, 12);
   overflow-x: hidden;
   border: 2px solid rgba(128, 128, 128, 0.253);
@@ -171,4 +174,17 @@ cursor: pointer;
 .main {
   margin-left: 200px; /* Same as the width of the sidenav */
 }
+
+
+
+
+@media screen and (max-width: 1000px) {
+   .sidenav{
+display: none;  
+  }
+} 
+
+
+
+
 </style>
