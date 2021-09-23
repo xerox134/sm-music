@@ -234,7 +234,6 @@ display: none;
   
 } 
 
-
 @media screen and (min-width: 850px) {
   #Player{
     display: none;
