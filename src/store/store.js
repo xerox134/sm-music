@@ -34,7 +34,8 @@ export default new Vuex.Store({
     playListInfo:{},
     artistInfo:{},
     currentPlaying:"",
-    index:0
+    index:0,
+    arrayLength:0
 
   },
 
@@ -53,7 +54,14 @@ export default new Vuex.Store({
   
     setPlayList(state,payload){
       
+      state.arrayLength++
+
       state.playList.push(payload)
+      console.log(state.arrayLength)
+    },
+    setPlayList2(state,payload){
+      state.playList=(payload)
+      console.log(state.arrayLength)
     },
   
     setSongInfo(state,payload){
@@ -173,6 +181,9 @@ export default new Vuex.Store({
     },
     getIndex(state){
       return state.index
+    },
+    getArrayLength(state){
+      return state.arrayLength
     }
 
    

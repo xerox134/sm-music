@@ -9,9 +9,8 @@
     <div class="objects" id="Artist" v-if="card.type == 'artist' && type == 'artist'">
       <br />
       <img v-bind:src="card.thumbnails[1].url" /> <br />
-<br />
-      <span> {{ card.name }}</span
-      ><br />
+      <br />
+      <span> {{ card.name }}</span><br/>
       <br />
       <button><router-link :to="artistLink">Dela Artist</router-link></button
       ><br /><br />
@@ -55,7 +54,7 @@
       
       <div id="playButtons">
         <button @click="Play(card.videoId, card.name)">Spela</button><br />
-        <button @click="queueSong(card.videoId, card.name)">Köa</button><br />
+        <button @click="queueSong(card.videoId, card.name,getArrayLength)">Köa</button><br />
       </div>
       <button><router-link :to="songLink">Dela låt</router-link></button
       ><br /><br />
@@ -81,7 +80,16 @@
         <span>{{ card.name }}</span>
         <button @click="Play(card.videoId, card.name)">Spela</button><br />
       </div>
-    </div>
+    </div> 
+    
+    
+     <div  id="playlist" v-if="type == 'playlist'">
+        <span @click="Play(card.id, card.name, card.index)">{{ card.name }}</span>
+      </div>
+   
+
+
+
   </div>
 
   <!------------------------------END-------------------------------------->
@@ -136,17 +144,24 @@ export default {
         thumbnailUrl +
         "/song"
       );
+
+      
     },
+
+
+    getArrayLength(){
+      return this.$store.getters.getArrayLength
+    }
   },
 
   methods: {
-    queueSong(id,name) {
-      this.$store.commit("setPlayList", {id,name});
+    queueSong(id,name,index) {
+      this.$store.commit("setPlayList", {id,name,index});
       console.log(this.$store.getters.getplayList);
     },
 
-    Play(id, name) {
-      
+    Play(id, name, index) {
+      console.log(id, name, index)
       this.$store.commit("setCurrentPlaying", name);
       window.player.loadVideoById(id);
       window.player.playVideo();
