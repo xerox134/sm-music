@@ -208,8 +208,7 @@ button > a {
         min-width: 20vw;
         max-width: 20vw;
         min-height: 100%;
-        
-          border:  2px solid rgba(255, 217, 0, 0.356);
+        border:  2px solid rgba(255, 217, 0, 0.356);
 }
  
  

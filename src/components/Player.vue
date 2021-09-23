@@ -76,7 +76,6 @@ export default {
 
     clear() {
       console.log(this.$store.getters.getplayList);
-
       this.$store.state.playList = [];
       console.log(this.$store.getters.getplayList);
     },

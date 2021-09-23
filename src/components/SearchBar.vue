@@ -1,15 +1,9 @@
 <template>
 <div id="body">
    
-
-
-
-
-
-
 <div id="cssMain">
 
-
+<!--- MEDIA QUERY -->
  <div id="Search" >
 
    <h4>Sök:</h4>
@@ -29,7 +23,6 @@
 
  </div>
 
-
    <div id="Player">
     <div>Now playing: {{ getCurrentPlaying }}</div>
     <div>
@@ -42,11 +35,10 @@
       <button @click="clear()">Clear</button>
     </div>
   </div>
+<!----------------------------------------------------------------------->
 
 
 <div id="SearchList">
-
-
   
  <h1>Låtar</h1>
   <ol>
@@ -81,10 +73,6 @@
    
   </div>
 
-
-
-
- 
   </div>
 </template>
 
@@ -95,46 +83,40 @@ export default {
 
        data(){
          return {
-         
           searchPhrase:this.searchPhrase,
-        
          }
      },
 
 
     components:{
-        Card,
-        
+        Card,     
     },
+
+
+    /////////////////// MEDIA QUERY!!//////////////////////////////
 
     computed:{
       getEverything() {
         console.log("funkar??", this.$store.getters.getEverything)
-         return this.$store.getters.getEverything;
+           return this.$store.getters.getEverything;
     },
       getCurrentPlaying() {
-      return this.$store.getters.getCurrentPlaying;
+       return this.$store.getters.getCurrentPlaying;
     },
 
     getIndex() {
-      return this.$store.getters.getIndex;
+        return this.$store.getters.getIndex;
     },
 
     getPlayList() {
-      return this.$store.getters.getplayList;
+        return this.$store.getters.getplayList;
     },
     getMusicId() {
-      return this.$store.getters.getMusicId;
+        return this.$store.getters.getMusicId;
     },
     },
 
-
-    
-      methods:{
-
-    
-
-    
+    methods:{
 
      searchForEverything(searchPhrase) {
       this.$store.commit("setSearchPhrase", searchPhrase);
@@ -147,10 +129,10 @@ export default {
           this.$store.dispatch("fetchEverything"); 
     },
 
-       play(array) {
-      this.$store.commit("setCurrentPlaying", array[this.getIndex].name);
-      window.player.loadVideoById(array[this.getIndex].id);
-      window.player.playVideo();
+     play(array) {
+       this.$store.commit("setCurrentPlaying", array[this.getIndex].name);
+         window.player.loadVideoById(array[this.getIndex].id);
+           window.player.playVideo();
     },
     pause() {
       window.player.pauseVideo();
@@ -161,49 +143,44 @@ export default {
     },
 
     playlist(array) {
-      this.$store.commit("setCurrentPlaying", array[this.getIndex].name);
-      window.player.loadVideoById(array[this.getIndex].id);
-      this.$store.commit("setCurrentPlaying", array[this.getIndex].name);
+       this.$store.commit("setCurrentPlaying", array[this.getIndex].name);
+         window.player.loadVideoById(array[this.getIndex].id);
+          this.$store.commit("setCurrentPlaying", array[this.getIndex].name);
     },
 
     previous(array) {
-      if (this.getIndex == 0) {
-        console.log("first song");
-      } else {
-        this.$store.commit("setMinusIndex", 1);
-        this.$store.commit("setCurrentPlaying", array[this.getIndex].name);
-        window.player.loadVideoById(array[this.getIndex].id);
+       if (this.getIndex == 0) {
+          console.log("first song");
+            } else {
+                this.$store.commit("setMinusIndex", 1);
+                   this.$store.commit("setCurrentPlaying", array[this.getIndex].name);
+                       window.player.loadVideoById(array[this.getIndex].id);
       }
     },
 
     next(array) {
       if (this.getIndex < array.length - 1) {
         this.$store.commit("setPlusIndex", 1);
-        this.$store.commit("setCurrentPlaying", array[this.getIndex].name);
-        window.player.loadVideoById(array[this.getIndex].id);
-      } else {
-        console.log("last song");
+           this.$store.commit("setCurrentPlaying", array[this.getIndex].name);
+               window.player.loadVideoById(array[this.getIndex].id);
+                 } else {
+                    console.log("last song");
       }
     },
 
     clear() {
       console.log(this.$store.getters.getplayList);
-
-      this.$store.state.playList = [];
-      console.log(this.$store.getters.getplayList);
+         this.$store.state.playList = [];
+          console.log(this.$store.getters.getplayList);
     },
  
-    
       },
+  //--------------------------------------------------------------
   
 }
 </script>
 
 <style scoped>
-
-
-
-
 
 
 #cssMain{
@@ -217,12 +194,9 @@ export default {
  display: flex;
  flex-direction: column;
  justify-content: center;
-   margin-bottom: 50px;
+  margin-bottom: 50px;
 
- 
 }
-
-
 
 h1{
   margin: 0;
@@ -230,8 +204,9 @@ h1{
 
 ol>li{
 list-style-type: none;
-
 }
+
+
 
 
 @media screen and (min-width: 1000px) {
@@ -240,17 +215,17 @@ display: none;
   } 
 }
   
-  @media screen and (max-width: 1000px) {
+@media screen and (max-width: 1000px) {
    #Search{
      width: 100%;
   } 
 
   .btn{
     margin: 1vh 1vw;
-     background-color: #414146;
-        border-radius: 10%;
-        color: #000000;
-        cursor: pointer;
+    background-color: #414146;
+    border-radius: 10%;
+    color: #000000;
+    cursor: pointer;
   }
 
   h4{
@@ -261,36 +236,21 @@ display: none;
 
 
 @media screen and (min-width: 850px) {
-  
   #Player{
     display: none;
   }
+  
   ol{
   display: flex;
   flex-direction: row;
   justify-content: center;
-min-height: 100%;
-overflow: hidden;
-       margin-left: 20px;
+  min-height: 100%;
+  overflow: hidden;
+  margin-left: 20px;
 
 }
  
 } 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </style>

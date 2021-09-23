@@ -1,15 +1,13 @@
 <template>
   <div id="APP">
-    
-    
-    
 
 <div id="SideNav"><SideNav /></div>
+<div id="player"><Player /></div>
 
-    <div id="player"><Player /></div>
-    <router-view />
+<router-view />
+  
+  
   </div>
-
 </template>
 
 <script>
@@ -69,7 +67,6 @@ body,html {
     margin-left: 0;
   }
 }
-
 
 @media screen and (max-width: 850px) {
   

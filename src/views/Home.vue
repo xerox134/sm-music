@@ -1,9 +1,12 @@
 <template>
-  <div id="Home">
-    <div id="Search"><Search /></div>
+<div id="Home">
     
     
-  </div>
+    
+<div id="Search"><Search /></div>
+    
+    
+</div>
 </template>
 
 
@@ -14,8 +17,7 @@ export default {
   name: "Home",
 
   components: {
-    Search,
-    
+    Search, 
   },
 };
 </script>
